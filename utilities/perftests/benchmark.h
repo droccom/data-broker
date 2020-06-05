@@ -30,6 +30,8 @@ static const char* TEST_NAMESPACE = "pn";
 #include "requestdata.h"
 #include "resultdata.h"
 
+#include "fs_backend.h"
+
 namespace dbr {
 
 static
@@ -65,6 +67,17 @@ double benchmark( config *config,
       case dbr::TEST_CASE_READ:
         retsize[n % config->_inflight ] = config->_datasize;
         reqd->_tags[n] = dbrReadA( h, data, &retsize[n % config->_inflight ], reqd->_names[n], match, DBR_GROUP_EMPTY, DBR_FLAGS_NONE );
+        break;
+      case dbr::TEST_CASE_PUT_FS:
+        reqd->_tags[n] = fsPut( data, config->_datasize, reqd->_names[n] );
+        break;
+      case dbr::TEST_CASE_GET_FS:
+        retsize[n % config->_inflight ] = config->_datasize;
+        reqd->_tags[n] = fsGet( data, &retsize[n % config->_inflight ], reqd->_names[n] );
+        break;
+      case dbr::TEST_CASE_READ_FS:
+        retsize[n % config->_inflight ] = config->_datasize;
+        reqd->_tags[n] = fsRead( data, &retsize[n % config->_inflight ], reqd->_names[n] );
         break;
       default:
         std::cerr << "Undefined test case: " << testcase << std::endl;
@@ -108,6 +121,17 @@ double benchmark( config *config,
       case dbr::TEST_CASE_READ:
         retsize[n % config->_inflight ] = config->_datasize;
         reqd->_tags[n] = dbrReadA( h, data, &retsize[n % config->_inflight ], reqd->_names[n], match, DBR_GROUP_EMPTY, DBR_FLAGS_NONE );
+        break;
+      case dbr::TEST_CASE_PUT_FS:
+        reqd->_tags[n] = fsPut( data, config->_datasize, reqd->_names[n] );
+        break;
+      case dbr::TEST_CASE_GET_FS:
+        retsize[n % config->_inflight ] = config->_datasize;
+        reqd->_tags[n] = fsGet( data, &retsize[n % config->_inflight ], reqd->_names[n] );
+        break;
+      case dbr::TEST_CASE_READ_FS:
+        retsize[n % config->_inflight ] = config->_datasize;
+        reqd->_tags[n] = fsRead( data, &retsize[n % config->_inflight ], reqd->_names[n] );
         break;
       default:
         std::cerr << "Undefined test case: " << testcase << std::endl;

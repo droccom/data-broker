@@ -41,6 +41,7 @@ if( MPI_FOUND )
 
   set(DB_USER_CC_TEST_SOURCES
     parallel.cc
+    parallel_fs.cc
     long_random_parallel.cc
   )
 

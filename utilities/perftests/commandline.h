@@ -45,7 +45,10 @@ enum TEST_CASE
   TEST_CASE_PUT = 0x1,
   TEST_CASE_GET = 0x2,
   TEST_CASE_READ = 0x4,
-  TEST_CASE_MAX = 0x8
+  TEST_CASE_MAX = 0x8,
+  TEST_CASE_PUT_FS,
+  TEST_CASE_GET_FS,
+  TEST_CASE_READ_FS
 };
 
 static inline int
